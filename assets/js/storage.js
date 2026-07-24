@@ -106,6 +106,11 @@ function saveChiller(chiller) {
     saveData("chillers", chillers);
 
 }
+function updateChillers(chillers) {
+
+    saveData("chillers", chillers);
+
+}
 
 // =============================================
 // Operating Data Functions
