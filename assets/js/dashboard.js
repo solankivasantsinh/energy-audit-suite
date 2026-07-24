@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const latest = projects[projects.length - 1];
 
-        document.getElementById("company").innerText = latest.company;
-        document.getElementById("plant").innerText = latest.plant;
-        document.getElementById("contact").innerText = latest.contact;
+        document.getElementById("company").innerText = latest.companyName;
+document.getElementById("plant").innerText = latest.plantName;
+document.getElementById("contact").innerText = latest.contactPerson;
     }
 
     // All Projects Table
@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
             table.innerHTML += `
             <tr>
                 <td>${project.projectId}</td>
-                <td>${project.company}</td>
-                <td>${project.plant}</td>
-                <td>${project.contact}</td>
+                <td>${project.companyName}</td>
+<td>${project.plantName}</td>
+<td>${project.contactPerson}</td>
                 <td>
                     <button class="btn btn-primary btn-sm"
                         onclick="openProject('${project.projectId}')">
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Open Project
 function openProject(projectId) {
 
-    localStorage.setItem("currentProjectId", projectId);
+    setCurrentProjectId(projectId);
 
     window.location.href = "chiller.html";
 

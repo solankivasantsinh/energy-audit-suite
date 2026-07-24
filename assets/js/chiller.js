@@ -1,19 +1,41 @@
-// =========================================
-// CHILLER MODULE
-// =========================================
+// =============================================
+// Energy Audit Suite
+// Chiller Module v2.0
+// =============================================
 
-// Current Project
-const currentProjectId = localStorage.getItem("currentProjectId");
+// =============================================
+// GLOBAL VARIABLES
+// =============================================
 
-// Edit Index
+const currentProjectId = getCurrentProjectId();
+
 let editIndex = -1;
 
-// Save Button
 const saveBtn = document.getElementById("saveChiller");
 
-// =========================================
-// SAVE / UPDATE
-// =========================================
+// =============================================
+// INITIALIZE
+// =============================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (!currentProjectId) {
+
+        alert("Please create or open a project first.");
+
+        window.location.href = "dashboard.html";
+
+        return;
+
+    }
+
+    loadChillers();
+
+});
+
+// =============================================
+// SAVE BUTTON
+// =============================================
 
 if (saveBtn) {
 
@@ -21,59 +43,76 @@ if (saveBtn) {
 
 }
 
+// =============================================
+// SAVE / UPDATE CHILLER
+// =============================================
+
 function saveChiller() {
 
-    let chillers = JSON.parse(localStorage.getItem("chillers")) || [];
+    let chillers = getChillers();
 
     const chiller = {
 
-        id: editIndex === -1
+        id:
+            editIndex === -1
             ? generateChillerId()
-            : (chillers[editIndex].id || generateChillerId()),
+            : chillers[editIndex].id,
 
         projectId: currentProjectId,
 
-        chillerName: document.getElementById("chillerName").value.trim(),
+        chillerName:
+            document.getElementById("chillerName").value.trim(),
 
-        capacity: document.getElementById("capacity").value,
+        capacity:
+            Number(document.getElementById("capacity").value),
 
-        type: document.getElementById("type").value,
+        type:
+            document.getElementById("type").value,
 
-        make: document.getElementById("make").value.trim(),
+        make:
+            document.getElementById("make").value.trim(),
 
-        model: document.getElementById("model").value.trim(),
+        model:
+            document.getElementById("model").value.trim(),
 
-        quantity: document.getElementById("qty").value,
+        quantity:
+            Number(document.getElementById("qty").value),
 
-        refrigerant: document.getElementById("refrigerant").value,
+        refrigerant:
+            document.getElementById("refrigerant").value,
 
-        compressorType: document.getElementById("compressorType").value,
+        compressorType:
+            document.getElementById("compressorType").value,
 
-        installationYear: document.getElementById("installationYear").value,
+        installationYear:
+            document.getElementById("installationYear").value,
 
-        ratedPower: document.getElementById("ratedPower").value,
+        ratedPower:
+            Number(document.getElementById("ratedPower").value),
 
-        ratedFlow: document.getElementById("ratedFlow").value,
+        ratedFlow:
+            Number(document.getElementById("ratedFlow").value),
 
-        designCOP: document.getElementById("designCOP").value
+        designCOP:
+            Number(document.getElementById("designCOP").value)
 
     };
 
-    // =====================================
+    // =========================================
     // VALIDATION
-    // =====================================
+    // =========================================
 
     if (chiller.chillerName === "") {
 
-        alert("Please Enter Chiller Name");
+        alert("Please enter Chiller Name.");
 
         return;
 
     }
 
-    if (chiller.capacity === "") {
+    if (!chiller.capacity || chiller.capacity <= 0) {
 
-        alert("Please Enter Capacity");
+        alert("Please enter valid Capacity.");
 
         return;
 
@@ -81,7 +120,7 @@ function saveChiller() {
 
     if (chiller.type === "") {
 
-        alert("Please Select Chiller Type");
+        alert("Please select Chiller Type.");
 
         return;
 
@@ -89,23 +128,23 @@ function saveChiller() {
 
     if (chiller.make === "") {
 
-        alert("Please Enter Make");
+        alert("Please enter Chiller Make.");
 
         return;
 
     }
 
-    if (chiller.quantity === "") {
+    if (!chiller.quantity || chiller.quantity <= 0) {
 
-        alert("Please Enter Quantity");
+        alert("Please enter Quantity.");
 
         return;
 
     }
 
-    // =====================================
+    // =========================================
     // DUPLICATE CHECK
-    // =====================================
+    // =========================================
 
     const duplicate = chillers.find((item, index) =>
 
@@ -123,35 +162,36 @@ function saveChiller() {
 
     }
 
-    // =====================================
+    // =========================================
     // SAVE / UPDATE
-    // =====================================
+    // =========================================
 
     if (editIndex === -1) {
 
         chillers.push(chiller);
 
-        alert("Chiller Saved Successfully");
-
-    } else {
-
-        chillers[editIndex] = chiller;
-
-        alert("Chiller Updated Successfully");
+        alert("Chiller Saved Successfully.");
 
     }
 
-    localStorage.setItem("chillers", JSON.stringify(chillers));
+    else {
+
+        chillers[editIndex] = chiller;
+
+        alert("Chiller Updated Successfully.");
+
+    }
+
+    updateChillers(chillers);
 
     clearForm();
 
     loadChillers();
 
 }
-
-// =========================================
-// LOAD TABLE
-// =========================================
+// =============================================
+// LOAD CHILLERS
+// =============================================
 
 function loadChillers() {
 
@@ -162,59 +202,35 @@ function loadChillers() {
     table.innerHTML = "";
 
     let totalChillers = 0;
-
     let totalCapacity = 0;
 
-    const search = document
-        .getElementById("searchChiller")
+    const searchText =
+        document.getElementById("searchChiller")
         ?.value
+        .trim()
         .toLowerCase() || "";
 
-    let chillers = JSON.parse(localStorage.getItem("chillers")) || [];
+    const chillers = getChillers();
 
     chillers.forEach((chiller, index) => {
 
-        if (!chiller.id) {
+        if (chiller.projectId !== currentProjectId) return;
 
-            chiller.id = generateChillerId();
+        const searchString = `
+            ${chiller.id}
+            ${chiller.chillerName}
+            ${chiller.make}
+            ${chiller.model}
+            ${chiller.type}
+        `.toLowerCase();
 
-        }
+        if (!searchString.includes(searchText)) return;
 
-        const id = chiller.id.toLowerCase();
+        totalChillers += Number(chiller.quantity || 1);
 
-        if (
+        totalCapacity += Number(chiller.capacity || 0);
 
-            chiller.projectId === currentProjectId &&
-
-            (
-
-                chiller.chillerName.toLowerCase().includes(search)
-
-                ||
-
-                chiller.make.toLowerCase().includes(search)
-
-                ||
-
-                chiller.model.toLowerCase().includes(search)
-
-                ||
-
-                chiller.type.toLowerCase().includes(search)
-
-                ||
-
-                id.includes(search)
-
-            )
-
-        ) {
-
-            totalChillers++;
-
-            totalCapacity += Number(chiller.capacity);
-
-            table.innerHTML += `
+        table.innerHTML += `
 
 <tr>
 
@@ -256,26 +272,37 @@ Delete
 
 `;
 
-        }
-
     });
-
-    localStorage.setItem("chillers", JSON.stringify(chillers));
 
     document.getElementById("totalChillers").innerText = totalChillers;
 
     document.getElementById("totalCapacity").innerText = totalCapacity;
 
 }
-// =========================================
+
+// =============================================
+// SEARCH
+// =============================================
+
+const searchBox = document.getElementById("searchChiller");
+
+if (searchBox) {
+
+    searchBox.addEventListener("keyup", loadChillers);
+
+}
+
+// =============================================
 // EDIT CHILLER
-// =========================================
+// =============================================
 
 function editChiller(index) {
 
-    let chillers = JSON.parse(localStorage.getItem("chillers")) || [];
+    const chillers = getChillers();
 
     const chiller = chillers[index];
+
+    if (!chiller) return;
 
     document.getElementById("chillerName").value = chiller.chillerName;
     document.getElementById("capacity").value = chiller.capacity;
@@ -284,12 +311,23 @@ function editChiller(index) {
     document.getElementById("model").value = chiller.model;
     document.getElementById("qty").value = chiller.quantity;
 
-    document.getElementById("refrigerant").value = chiller.refrigerant || "";
-    document.getElementById("compressorType").value = chiller.compressorType || "";
-    document.getElementById("installationYear").value = chiller.installationYear || "";
-    document.getElementById("ratedPower").value = chiller.ratedPower || "";
-    document.getElementById("ratedFlow").value = chiller.ratedFlow || "";
-    document.getElementById("designCOP").value = chiller.designCOP || "";
+    document.getElementById("refrigerant").value =
+        chiller.refrigerant || "";
+
+    document.getElementById("compressorType").value =
+        chiller.compressorType || "";
+
+    document.getElementById("installationYear").value =
+        chiller.installationYear || "";
+
+    document.getElementById("ratedPower").value =
+        chiller.ratedPower || "";
+
+    document.getElementById("ratedFlow").value =
+        chiller.ratedFlow || "";
+
+    document.getElementById("designCOP").value =
+        chiller.designCOP || "";
 
     editIndex = index;
 
@@ -304,10 +342,9 @@ function editChiller(index) {
     });
 
 }
-
-// =========================================
+// =============================================
 // DELETE CHILLER
-// =========================================
+// =============================================
 
 function deleteChiller(index) {
 
@@ -317,19 +354,19 @@ function deleteChiller(index) {
 
     }
 
-    let chillers = JSON.parse(localStorage.getItem("chillers")) || [];
+    let chillers = getChillers();
 
     chillers.splice(index, 1);
 
-    localStorage.setItem("chillers", JSON.stringify(chillers));
+    updateChillers(chillers);
 
     loadChillers();
 
 }
 
-// =========================================
+// =============================================
 // CLEAR FORM
-// =========================================
+// =============================================
 
 function clearForm() {
 
@@ -353,13 +390,13 @@ function clearForm() {
 
 }
 
-// =========================================
+// =============================================
 // GENERATE CHILLER ID
-// =========================================
+// =============================================
 
 function generateChillerId() {
 
-    let chillers = JSON.parse(localStorage.getItem("chillers")) || [];
+    const chillers = getChillers();
 
     const projectChillers = chillers.filter(
 
@@ -383,24 +420,16 @@ function generateChillerId() {
 
 }
 
-// =========================================
-// INITIAL LOAD
-// =========================================
+// =============================================
+// REFRESH AFTER PAGE LOAD
+// =============================================
 
-loadChillers();
+window.addEventListener("focus", function () {
 
-// =========================================
-// SEARCH
-// =========================================
+    loadChillers();
 
-const searchBox = document.getElementById("searchChiller");
+});
 
-if (searchBox) {
-
-    searchBox.addEventListener("keyup", function () {
-
-        loadChillers();
-
-    });
-
-}
+// =============================================
+// END OF MODULE
+// =============================================
