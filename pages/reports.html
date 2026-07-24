@@ -1,11 +1,335 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Page</title>
-</head>
-<body>
+<html lang="en">
 
-<h1>Coming Soon</h1>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Energy Audit Report</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+        <h2>Energy Audit Report</h2>
+
+        <div>
+
+            <button class="btn btn-primary" onclick="window.print()">
+                🖨 Print
+            </button>
+
+            <a href="dashboard.html" class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <!-- ============================== -->
+    <!-- Project Information -->
+    <!-- ============================== -->
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-header bg-primary text-white">
+
+            Project Information
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <p><strong>Project ID :</strong> <span id="projectId"></span></p>
+
+                    <p><strong>Company :</strong> <span id="company"></span></p>
+
+                    <p><strong>Plant :</strong> <span id="plant"></span></p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <p><strong>Contact :</strong> <span id="contact"></span></p>
+
+                    <p><strong>Report Date :</strong> <span id="reportDate"></span></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ============================== -->
+    <!-- Chiller Details -->
+    <!-- ============================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-success text-white">
+
+            Chiller Details
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Name</th>
+
+                            <th>Capacity</th>
+
+                            <th>Type</th>
+
+                            <th>Make</th>
+
+                            <th>Model</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="chillerTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+        <!-- ============================== -->
+    <!-- Operating Data -->
+    <!-- ============================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-info text-white">
+
+            Operating Data
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Power (kW)</th>
+                            <th>CHW In</th>
+                            <th>CHW Out</th>
+                            <th>Flow</th>
+                            <th>Load %</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="operatingTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ============================== -->
+    <!-- Calculation Results -->
+    <!-- ============================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-warning">
+
+            Calculation Results
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-3 mb-3">
+
+                    <label>Delta T</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="deltaT"
+                        readonly>
+
+                </div>
+
+                <div class="col-md-3 mb-3">
+
+                    <label>Actual TR</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="actualTR"
+                        readonly>
+
+                </div>
+
+                <div class="col-md-3 mb-3">
+
+                    <label>kW/TR</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="kwPerTR"
+                        readonly>
+
+                </div>
+
+                <div class="col-md-3 mb-3">
+
+                    <label>COP</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="cop"
+                        readonly>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ============================== -->
+    <!-- Audit Summary -->
+    <!-- ============================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-success text-white">
+
+            Audit Summary
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+
+                    <label>Performance</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="performance"
+                        readonly>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label>Status</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="status"
+                        readonly>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label>Recommendation</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="recommendation"
+                        readonly>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ============================== -->
+    <!-- Footer -->
+    <!-- ============================== -->
+
+    <div class="text-center mt-5 mb-4">
+
+        <hr>
+
+        <p class="mb-1">
+
+            <strong>Energy Audit Suite</strong>
+
+        </p>
+
+        <small class="text-muted">
+
+            Generated by Energy Audit Suite
+
+        </small>
+
+    </div>
+
+</div>
+
+<script src="../assets/js/storage.js"></script>
+
+<script src="../assets/js/report.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

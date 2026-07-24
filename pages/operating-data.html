@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Operating Data</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+<h2 class="mb-3">Operating Data</h2>
+
+<hr>
+
+<!-- ========================= -->
+<!-- General Information -->
+<!-- ========================= -->
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-header bg-primary text-white">
+
+<h5 class="mb-0">
+General Information
+</h5>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+Select Chiller
+
+</label>
+
+<select
+class="form-select"
+id="chillerId">
+
+<option value="">
+Select Chiller
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+Reading Date
+
+</label>
+
+<input
+type="date"
+class="form-control"
+id="readingDate">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+Reading Time
+
+</label>
+
+<input
+type="time"
+class="form-control"
+id="readingTime">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+Running Status
+
+</label>
+
+<select
+class="form-select"
+id="runningStatus">
+
+<option value="Running">
+Running
+</option>
+
+<option value="Stopped">
+Stopped
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Chilled Water -->
+<!-- ========================= -->
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-header bg-info text-white">
+
+<h5 class="mb-0">
+
+Chilled Water
+
+</h5>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-4 mb-3">
+
+<label>
+
+CHW Inlet Temp (°C)
+
+</label>
+
+<input
+type="number"
+step="0.1"
+class="form-control"
+id="chwIn">
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label>
+
+CHW Outlet Temp (°C)
+
+</label>
+
+<input
+type="number"
+step="0.1"
+class="form-control"
+id="chwOut">
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label>
+
+CHW Flow (LPM)
+
+</label>
+
+<input
+type="number"
+class="form-control"
+id="chwFlow">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ========================= -->
+<!-- Condenser Water -->
+<!-- ========================= -->
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-secondary text-white">
+
+        <h5 class="mb-0">
+            Condenser Water
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+                <label>CW Inlet Temp (°C)</label>
+                <input type="number" step="0.1" class="form-control" id="cwIn">
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>CW Outlet Temp (°C)</label>
+                <input type="number" step="0.1" class="form-control" id="cwOut">
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>CW Flow (LPM)</label>
+                <input type="number" class="form-control" id="cwFlow">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Electrical Data -->
+<!-- ========================= -->
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-warning">
+
+        <h5 class="mb-0">
+            Electrical Data
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-3 mb-3">
+                <label>Power (kW)</label>
+                <input type="number" step="0.01" class="form-control" id="power">
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label>Voltage (V)</label>
+                <input type="number" class="form-control" id="voltage">
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label>Current (A)</label>
+                <input type="number" class="form-control" id="current">
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label>Power Factor</label>
+                <input type="number" step="0.01" class="form-control" id="pf">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Other Details -->
+<!-- ========================= -->
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-success text-white">
+
+        <h5 class="mb-0">
+            Other Details
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+                <label>Load (%)</label>
+                <input type="number" class="form-control" id="loadPercent">
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>Ambient Temperature (°C)</label>
+                <input type="number" step="0.1" class="form-control" id="ambient">
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>Remarks</label>
+                <input type="text" class="form-control" id="remarks">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="mb-4">
+
+    <button class="btn btn-success" id="saveReading">
+        Save Reading
+    </button>
+
+    <a href="chiller.html" class="btn btn-secondary">
+        Back
+    </a>
+
+</div>
+
+<!-- ========================= -->
+<!-- Saved Readings -->
+<!-- ========================= -->
+
+<div class="card shadow-sm">
+
+    <div class="card-header">
+
+        <h5 class="mb-0">
+            Saved Operating Readings
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Chiller</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Power</th>
+                        <th>CHW In</th>
+                        <th>CHW Out</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="readingTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/operating-data.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

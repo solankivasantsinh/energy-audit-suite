@@ -2,71 +2,152 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Project</title>
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>New Project</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body class="bg-light">
 
-<div class="main">
+<div class="container mt-4">
 
-<h1>New Energy Audit Project</h1>
+<h2>New Energy Audit Project</h2>
 
-<form>
+<hr>
 
-<h2>Customer Information</h2>
+<h4>Customer Information</h4>
 
-<label>Company Name</label><br>
-<input type="text"><br><br>
+<div class="row">
 
-<label>Plant Name</label><br>
-<input type="text"><br><br>
+<div class="col-md-6 mb-3">
 
-<label>Industry Type</label><br>
-<input type="text"><br><br>
+<label>Company Name *</label>
 
-<label>Contact Person</label><br>
-<input type="text"><br><br>
-
-<label>Mobile Number</label><br>
-<input type="text"><br><br>
-
-<label>Email</label><br>
-<input type="email"><br><br>
-
-<h2>Audit Details</h2>
-
-<label>Audit Date</label><br>
-<input type="date"><br><br>
-
-<label>Auditor Name</label><br>
-<input type="text"><br><br>
-
-<label>Electricity Tariff (₹/kWh)</label><br>
-<input type="number"><br><br>
-
-<label>Working Hours / Day</label><br>
-<input type="number"><br><br>
-
-<label>Working Days / Year</label><br>
-<input type="number"><br><br>
-
-<h2>Audit Scope</h2>
-
-<input type="checkbox"> Chiller Plant<br>
-<input type="checkbox"> Air Compressor Plant<br>
-<input type="checkbox"> Both Systems<br><br>
-
-<button type="submit">Save & Continue</button>
-
-</form>
+<input type="text" class="form-control">
 
 </div>
 
+<div class="col-md-6 mb-3">
+
+<label>Plant Name</label>
+
+<input type="text" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Contact Person *</label>
+
+<input type="text" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Designation</label>
+
+<input type="text" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Mobile Number *</label>
+
+<input type="text" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Email</label>
+
+<input type="email" class="form-control">
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label>Address</label>
+
+<textarea class="form-control"></textarea>
+
+</div>
+
+<div class="col-md-4">
+
+<label>City</label>
+
+<input class="form-control">
+
+</div>
+
+<div class="col-md-4">
+
+<label>State</label>
+
+<input class="form-control">
+
+</div>
+
+<div class="col-md-4">
+
+<label>Pincode</label>
+
+<input class="form-control">
+
+</div>
+
+<div class="col-md-6 mt-3">
+
+<label>Audit Type</label>
+
+<select class="form-select">
+
+<option>Chiller Audit</option>
+
+<option>Compressor Audit</option>
+
+<option>Both</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mt-3">
+
+<label>Audit Date</label>
+
+<input type="date" class="form-control">
+
+</div>
+
+</div>
+
+<hr>
+
+<button class="btn btn-success">
+
+Save & Next
+
+</button>
+
+<a href="dashboard.html" class="btn btn-secondary">
+
+Cancel
+
+</a>
+
+</div>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/app.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calculation Engine</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+<h2 class="mb-3">
+
+Calculation Engine
+
+</h2>
+
+<hr>
+
+<!-- ================================= -->
+<!-- Select Reading -->
+<!-- ================================= -->
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-header bg-primary text-white">
+
+<h5 class="mb-0">
+
+Select Reading
+
+</h5>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>
+
+Operating Reading
+
+</label>
+
+<select
+class="form-select"
+id="readingId">
+
+<option value="">
+
+Select Reading
+
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 d-flex align-items-end">
+
+<button
+class="btn btn-success w-100"
+id="loadReading">
+
+Load Reading
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================================= -->
+<!-- Measured Data -->
+<!-- ================================= -->
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-header bg-info text-white">
+
+<h5 class="mb-0">
+
+Measured Data
+
+</h5>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<label>
+
+Power (kW)
+
+</label>
+
+<input
+type="text"
+class="form-control"
+id="power"
+readonly>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label>
+
+CHW In (°C)
+
+</label>
+
+<input
+type="text"
+class="form-control"
+id="chwIn"
+readonly>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label>
+
+CHW Out (°C)
+
+</label>
+
+<input
+type="text"
+class="form-control"
+id="chwOut"
+readonly>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label>
+
+CHW Flow
+
+</label>
+
+<input
+type="text"
+class="form-control"
+id="chwFlow"
+readonly>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label>
+
+CW In
+
+</label>
+
+<input
+type="text"
+class="form-control"
+id="cwIn"
+readonly>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label>
+
+CW Out
+
+</label>
+
+<input
+type="text"
+class="form-control"
+id="cwOut"
+readonly>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label>
+
+CW Flow
+
+</label>
+
+<input
+type="text"
+class="form-control"
+id="cwFlow"
+readonly>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================================= -->
+<!-- Calculated Results -->
+<!-- ================================= -->
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-success text-white">
+
+        <h5 class="mb-0">
+            Calculated Results
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-3 mb-3">
+
+                <label>ΔT (°C)</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="deltaT"
+                    readonly>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <label>Actual TR</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="actualTR"
+                    readonly>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <label>kW/TR</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="kwPerTR"
+                    readonly>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <label>COP</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cop"
+                    readonly>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+<!-- Performance -->
+<!-- ================================= -->
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-warning">
+
+        <h5 class="mb-0">
+            Performance Assessment
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+
+                <label>Performance</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="performance"
+                    readonly>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <label>Recommendation</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="recommendation"
+                    readonly>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <label>Status</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="status"
+                    readonly>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+<!-- Buttons -->
+<!-- ================================= -->
+
+<div class="mb-4">
+
+    <button
+        class="btn btn-success"
+        id="calculateBtn">
+
+        Calculate
+
+    </button>
+
+    <a
+        href="operating-data.html"
+        class="btn btn-secondary">
+
+        Back
+
+    </a>
+
+</div>
+
+</div>
+
+<script src="../assets/js/storage.js"></script>
+
+<script src="../assets/js/calculations.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

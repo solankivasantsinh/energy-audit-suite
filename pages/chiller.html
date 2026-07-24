@@ -1,11 +1,358 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Page</title>
-</head>
-<body>
+<html lang="en">
 
-<h1>Coming Soon</h1>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chiller Information</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+    <h2 class="mb-3">Chiller Information</h2>
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- Equipment Details -->
+    <!-- ========================= -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-primary text-white">
+
+            <h5 class="mb-0">Equipment Details</h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Chiller Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="chillerName">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Capacity (TR)</label>
+                    <input type="number"
+                           class="form-control"
+                           id="capacity">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Type</label>
+
+                    <select class="form-select"
+                            id="type">
+
+                        <option value="">Select Type</option>
+                        <option>Air Cooled</option>
+                        <option>Water Cooled</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Make</label>
+                    <input type="text"
+                           class="form-control"
+                           id="make">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Model</label>
+                    <input type="text"
+                           class="form-control"
+                           id="model">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">No. of Chillers</label>
+                    <input type="number"
+                           class="form-control"
+                           id="qty">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Nameplate Data -->
+    <!-- ========================= -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-success text-white">
+
+            <h5 class="mb-0">Nameplate Data</h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Refrigerant
+                    </label>
+
+                    <select class="form-select"
+                            id="refrigerant">
+
+                        <option value="">Select Refrigerant</option>
+
+                        <option>R134a</option>
+                        <option>R123</option>
+                        <option>R410A</option>
+                        <option>R22</option>
+                        <option>Ammonia (NH3)</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Compressor Type
+                    </label>
+
+                    <select class="form-select"
+                            id="compressorType">
+
+                        <option value="">Select Type</option>
+
+                        <option>Centrifugal</option>
+                        <option>Screw</option>
+                        <option>Scroll</option>
+                        <option>Reciprocating</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Installation Year
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="installationYear">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Rated Power (kW)
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="ratedPower">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Rated CHW Flow (LPM)
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="ratedFlow">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Design COP
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        id="designCOP">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="mb-4">
+
+        <button
+            class="btn btn-success"
+            id="saveChiller">
+
+            Save Chiller
+
+        </button>
+
+        <a href="dashboard.html"
+           class="btn btn-secondary">
+
+            Back
+
+        </a>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Added Chillers -->
+    <!-- ========================= -->
+
+    <div class="card shadow-sm">
+
+        <div class="card-header">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6">
+
+                    <h5 class="mb-0">
+                        Added Chillers
+                    </h5>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="searchChiller"
+                        placeholder="🔍 Search Chiller">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Name</th>
+
+                            <th>Capacity</th>
+
+                            <th>Type</th>
+
+                            <th>Make</th>
+
+                            <th>Model</th>
+
+                            <th>Qty</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="chillerTable">
+                                            </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Summary -->
+
+            <div class="row mt-4">
+
+                <div class="col-md-6">
+
+                    <div class="card border-primary">
+
+                        <div class="card-body text-center">
+
+                            <h6 class="text-muted">
+                                Total Chillers
+                            </h6>
+
+                            <h3 id="totalChillers">
+                                0
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="card border-success">
+
+                        <div class="card-body text-center">
+
+                            <h6 class="text-muted">
+                                Total Capacity (TR)
+                            </h6>
+
+                            <h3 id="totalCapacity">
+                                0
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../assets/js/storage.js"></script>
+
+<script src="../assets/js/chiller.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
